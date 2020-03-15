@@ -2,8 +2,8 @@ const moment = require('moment');
 const Sentiment = require('sentiment');
 const vader = require('vader-sentiment');
 const twit = require('twit');
-const dotenv = require('dotenv');
-dotenv.config();
+const vcnfig = require('./config');
+
 
 /**
  * An IIFE (Immediately Invoked Function Expression) to
@@ -26,12 +26,9 @@ dotenv.config();
     /**
      * A Twit object to call Twitter API.
      */
-    this.Twitter = new twit({
-      consumer_key: process.env.BOT_CONSUMER_KEY,
-      consumer_secret: process.env.BOT_CONSUMER_SECRET,
-      access_token: process.env.BOT_ACCESS_TOKEN,
-      access_token_secret: process.env.BOT_ACCESS_TOKEN_SECRET
-    });
+    this.Twitter = new twit(config)
+
+
 
     /**
      * A parameters object for get('search/tweets')
